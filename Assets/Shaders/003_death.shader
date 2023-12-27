@@ -3,6 +3,7 @@ Shader "Unlit/003_death"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        [ShowAsVector2] _Size("Size", Vector) = (1, 1, 0, 0)
     }
     SubShader
     {
@@ -37,12 +38,14 @@ Shader "Unlit/003_death"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float2 _Size;
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv /= _Size;
                 UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }

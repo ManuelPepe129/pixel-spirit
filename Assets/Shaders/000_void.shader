@@ -1,8 +1,5 @@
 Shader "Unlit/000_void"
 {
-    Properties
-    {
-    }
     SubShader
     {
         Tags

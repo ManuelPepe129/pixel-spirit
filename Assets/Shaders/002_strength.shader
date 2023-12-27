@@ -3,6 +3,7 @@ Shader "Unlit/002_strength"
     Properties
     {
         _Color("Color", Color) = (0,0,0,1)
+        [ShowAsVector2] _Size("Size", Vector) = (1, 1, 0, 0)
     }
     SubShader
     {
@@ -32,12 +33,13 @@ Shader "Unlit/002_strength"
                 float4 vertex : SV_POSITION;
             };
 
+            float2 _Size;
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = v.uv / _Size;
                 return o;
             }
 
