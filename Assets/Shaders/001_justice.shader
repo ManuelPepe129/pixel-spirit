@@ -1,6 +1,9 @@
 Shader "Unlit/001_justice"
 {
-    Properties {}
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+    }
     SubShader
     {
         Tags
@@ -29,11 +32,14 @@ Shader "Unlit/001_justice"
                 float4 vertex : SV_POSITION;
             };
 
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+
             v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);;
                 return o;
             }
 
