@@ -1,8 +1,6 @@
-Shader "Unlit/0_void"
+Shader "Unlit/001_justice"
 {
-    Properties
-    {
-    }
+    Properties {}
     SubShader
     {
         Tags
@@ -42,7 +40,8 @@ Shader "Unlit/0_void"
             fixed4 frag(v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = float4(0, 0, 0, 1);
+                fixed4 col = float4(1, 1, 1, 1);
+                col *= step(.5, i.uv.x);
                 return col;
             }
             ENDCG
